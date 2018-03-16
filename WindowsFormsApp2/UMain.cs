@@ -170,6 +170,11 @@ namespace WindowsFormsApp2
                 }
             }
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            timer1_Tick(sender, e);
+        }
     }
 
 

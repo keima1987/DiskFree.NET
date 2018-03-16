@@ -280,6 +280,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Disk Free .NET";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
