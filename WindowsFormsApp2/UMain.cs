@@ -135,25 +135,13 @@ namespace WindowsFormsApp2
                             string DType = d.DriveType.ToString();
                             string VLabel = d.VolumeLabel;
                             double percentFree = Math.Round(100 * (double)d.TotalFreeSpace / d.TotalSize, 4);
-                            if (percentFree < 10)
-                            {
-                                ModifyProgressBarColor.SetState(pb, 2);
-                            }
-                            else if (percentFree < 30)
-                            {
-                                ModifyProgressBarColor.SetState(pb, 3);
-                            }
-                            else
-                            {
-                                ModifyProgressBarColor.SetState(pb, 1);
-                            }
 
                             if (VLabel == "") // Checks if Drive Label is empty
                             {
                                 VLabel = "No Label";
                             }
 
-                            lblInfo.Text = VLabel + " / " + percentFree + "% Free / " + SAvailable + " / " + STotal + " / " + DType;
+                            lblInfo.Text = VLabel + " / " + percentFree.ToString("0.0000") + "% Free / " + SAvailable + " / " + STotal + " / " + DType;
                         }
                         else
                         {
@@ -174,17 +162,6 @@ namespace WindowsFormsApp2
         private void frmMain_Load(object sender, EventArgs e)
         {
             timer1_Tick(sender, e);
-        }
-    }
-
-
-    public static class ModifyProgressBarColor
-    {
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
-        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
-        public static void SetState(this ProgressBar pBar, int state)
-        {
-            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
         }
     }
 }
