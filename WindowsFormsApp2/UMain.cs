@@ -63,13 +63,13 @@ namespace WindowsFormsApp2
                             if (d.TotalSize > 1099511627776) // check > 2TB Int32 limitation.
                             {
                                 pb.Maximum = Convert.ToInt32(d.TotalSize / 1048576);
-                                pb.Value = Convert.ToInt32((d.TotalSize - d.TotalFreeSpace) / 1048576);
+                                pb.Value = Convert.ToInt32((d.TotalSize - d.AvailableFreeSpace) / 1048576);
                             }
                             else
                             {
 
                                 pb.Maximum = Convert.ToInt32(d.TotalSize / 1024);
-                                pb.Value = Convert.ToInt32((d.TotalSize - d.TotalFreeSpace) / 1024);
+                                pb.Value = Convert.ToInt32((d.TotalSize - d.AvailableFreeSpace) / 1024);
                             }
                         }
                         else
@@ -84,7 +84,7 @@ namespace WindowsFormsApp2
                         if (d.IsReady == true)
                         {
                             string postfix = "Bytes";
-                            double Available = d.TotalFreeSpace;
+                            double Available = d.AvailableFreeSpace;
 
                             if (Available >= 1099511627776)//more than 1 TB
                             {
@@ -134,7 +134,7 @@ namespace WindowsFormsApp2
                             string STotal = Math.Round(Total, 2).ToString() + " " + postfix;
                             string DType = d.DriveType.ToString();
                             string VLabel = d.VolumeLabel;
-                            double percentFree = Math.Round(100 * (double)d.TotalFreeSpace / d.TotalSize, 4);
+                            double percentFree = Math.Round(100 * (double)d.AvailableFreeSpace / d.TotalSize, 4);
 
                             if (VLabel == "") // Checks if Drive Label is empty
                             {
